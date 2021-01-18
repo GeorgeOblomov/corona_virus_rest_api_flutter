@@ -29,7 +29,7 @@ class APIService {
       {@required String accessToken, @required Endpoint endpoint}) async {
     final uri = api.endpointUri(endpoint);
     final response = await http
-        .get(uri.toString, headers: {'Authorization': 'Bearer $accessToken'});
+        .get(uri.toString(), headers: {'Authorization': 'Bearer $accessToken'});
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       if (data.isNotEmpty) {
@@ -41,6 +41,9 @@ class APIService {
         }
       }
     }
+    print(
+        'Request $uri failed\nResponse: ${response.statusCode} ${response.reasonPhrase}');
+    throw response;
   }
 
   static Map<Endpoint, String> _responseJsonKeys = {
