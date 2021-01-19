@@ -1,7 +1,7 @@
 import 'package:corona_virus_rest_api_flutter_courses/app/services/api_keys.dart';
 import 'package:flutter/material.dart';
 
-enum Endpoint { cases, casesSuspected, casesConfirmed, deaths, recovered }
+enum Endpoint { cases, casesConfirmed, casesSuspected, deaths, recovered }
 
 class API {
   final String apiKey;
@@ -19,8 +19,8 @@ class API {
 
   static Map<Endpoint, String> _paths = {
     Endpoint.cases: 'cases',
-    Endpoint.casesConfirmed: 'confirmed',
-    Endpoint.casesSuspected: 'suspected',
+    Endpoint.casesConfirmed: 'casesConfirmed',
+    Endpoint.casesSuspected: 'casesSuspected',
     Endpoint.deaths: 'deaths',
     Endpoint.recovered: 'recovered'
   };

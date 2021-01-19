@@ -5,6 +5,14 @@ class EndpointCard extends StatelessWidget {
   final Endpoint endpoint;
   final int value;
 
+  static Map<Endpoint, String> _cardTitles = {
+    Endpoint.cases: 'Cases',
+    Endpoint.casesConfirmed: 'Confirmed cases',
+    Endpoint.casesSuspected: 'Suspected cases',
+    Endpoint.deaths: 'Deaths',
+    Endpoint.recovered: 'Recovered'
+  };
+  //TODO: Make possible to prevent overflow by 18 pixels on the right
   EndpointCard({Key key, this.endpoint, this.value});
   @override
   Widget build(BuildContext context) {
@@ -16,14 +24,20 @@ class EndpointCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Cases',
-                style: Theme.of(context).textTheme.headline5,
+              Container(
+                width: MediaQuery.of(context).size.width / 3,
+                child: Text(
+                  _cardTitles[endpoint],
+                  style: Theme.of(context).textTheme.headline5,
+                  maxLines: 2,
+                ),
               ),
-              Text(
-                value != null ? value.toString() : '',
-                style: Theme.of(context).textTheme.headline4,
-              ),
+              (value != null)
+                  ? Text(
+                      value != null ? value.toString() : '',
+                      style: Theme.of(context).textTheme.headline4,
+                    )
+                  : CircularProgressIndicator(),
             ],
           ),
         ),
