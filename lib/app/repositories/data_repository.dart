@@ -1,6 +1,7 @@
 import 'package:corona_virus_rest_api_flutter_courses/app/repositories/endpoints_data.dart';
 import 'package:corona_virus_rest_api_flutter_courses/app/services/api.dart';
 import 'package:corona_virus_rest_api_flutter_courses/app/services/api_service.dart';
+import 'package:corona_virus_rest_api_flutter_courses/app/services/endpoint_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
@@ -10,8 +11,8 @@ class DataRepository {
 
   DataRepository({@required this.apiService});
 
-  Future<int> getEndpointData(Endpoint endpoint) async =>
-      await _getDataRefreshingToken<int>(
+  Future<EndpointData> getEndpointData(Endpoint endpoint) async =>
+      await _getDataRefreshingToken<EndpointData>(
         onGetData: () => apiService.getEndpointData(
           accessToken: _accessToken,
           endpoint: endpoint,

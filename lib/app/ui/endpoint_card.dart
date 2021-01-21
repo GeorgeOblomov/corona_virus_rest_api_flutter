@@ -1,5 +1,6 @@
 import 'package:corona_virus_rest_api_flutter_courses/app/services/api.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EndpointCardData {
   final String title;
@@ -25,8 +26,15 @@ class EndpointCard extends StatelessWidget {
     Endpoint.recovered:
         EndpointCardData('Recovered', 'assets/patient.png', Color(0xFF70A901))
   };
-  //TODO: Make possible to prevent overflow by 18 pixels on the right
   EndpointCard({Key key, this.endpoint, this.value});
+
+  String get formattedValue {
+    if (value == null) {
+      return '';
+    }
+    return NumberFormat('#,###,###,###').format(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     final cardData = _cardData[endpoint];
@@ -56,7 +64,7 @@ class EndpointCard extends StatelessWidget {
                     Image.asset(cardData.assetName, color: cardData.color),
                     (value != null)
                         ? Text(
-                            value != null ? value.toString() : '',
+                            formattedValue,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4
