@@ -3,22 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/repositories/data_repository.dart';
 import 'app/services/api.dart';
+import 'app/services/data_cache_service.dart';
 import 'app/ui/dashboard.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Intl.defaultLocale = 'en_GB';
   await initializeDateFormatting();
-  runApp(MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  runApp(MyApp(sharedPreferences: prefs));
 }
 
 class MyApp extends StatelessWidget {
+  final SharedPreferences sharedPreferences;
+
+  MyApp({@required this.sharedPreferences});
   @override
   Widget build(BuildContext context) {
     return Provider<DataRepository>(
-      create: (_) => DataRepository(apiService: APIService(API.sandbox())),
+      create: (_) => DataRepository(
+          apiService: APIService(API.sandbox()),
+          dataCacheService: DataCacheService(prefs: sharedPreferences)),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Coronavirus Tracker',
