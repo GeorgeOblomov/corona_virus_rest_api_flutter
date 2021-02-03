@@ -7,10 +7,10 @@ I took it from Udemy courses - [Flutter REST API Crash Course: Build a Coronavir
 
 ## Features progress
 
--[x] Some UI fixes
--[] Animations for better usability
--[] Launcher icons 
--[] Theme switcher
+- [x] Some UI fixes
+- [ ] Animations for better usability
+- [ ] Launcher icons 
+- [ ] Theme switcher
 
 ## Contributors
 
