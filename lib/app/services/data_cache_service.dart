@@ -11,13 +11,13 @@ class DataCacheService {
   static String endpointValueKey(Endpoint endpoint) => '$endpoint/value';
   static String endpointDateKey(Endpoint endpoint) => '$endpoint/date';
 
-  DataCacheService({@required this.prefs});
+  DataCacheService({required this.prefs});
 
   Future<void> setData(EndpointsData endpointsData) async {
     endpointsData.values.forEach((endpoint, endpointData) async {
       await prefs.setInt(endpointValueKey(endpoint), endpointData.value);
       await prefs.setString(
-          endpointDateKey(endpoint), endpointData.date.toIso8601String());
+          endpointDateKey(endpoint), endpointData.date!.toIso8601String());
     });
   }
 

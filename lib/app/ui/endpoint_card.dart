@@ -11,8 +11,8 @@ class EndpointCardData {
 }
 
 class EndpointCard extends StatelessWidget {
-  final Endpoint endpoint;
-  final int value;
+  final Endpoint? endpoint;
+  final int? value;
 
   static Map<Endpoint, EndpointCardData> _cardData = {
     Endpoint.cases:
@@ -26,7 +26,7 @@ class EndpointCard extends StatelessWidget {
     Endpoint.recovered:
         EndpointCardData('Recovered', 'assets/patient.png', Color(0xFF70A901))
   };
-  EndpointCard({Key key, this.endpoint, this.value});
+  EndpointCard({Key? key, this.endpoint, this.value});
 
   String get formattedValue {
     if (value == null) {
@@ -37,7 +37,7 @@ class EndpointCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardData = _cardData[endpoint];
+    final cardData = _cardData[endpoint!]!;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       child: Card(
@@ -50,7 +50,7 @@ class EndpointCard extends StatelessWidget {
                 cardData.title,
                 style: Theme.of(context)
                     .textTheme
-                    .headline5
+                    .headline5!
                     .copyWith(color: cardData.color),
                 maxLines: 2,
               ),
@@ -67,7 +67,7 @@ class EndpointCard extends StatelessWidget {
                             formattedValue,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline4
+                                .headline4!
                                 .copyWith(
                                     color: cardData.color,
                                     fontWeight: FontWeight.w500),

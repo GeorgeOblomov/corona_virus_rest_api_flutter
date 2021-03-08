@@ -9,9 +9,9 @@ import 'package:http/http.dart';
 class DataRepository {
   final APIService apiService;
   final DataCacheService dataCacheService;
-  String _accessToken;
+  String? _accessToken;
 
-  DataRepository({@required this.apiService, @required this.dataCacheService});
+  DataRepository({required this.apiService, required this.dataCacheService});
 
   Future<EndpointData> getEndpointData(Endpoint endpoint) async =>
       await _getDataRefreshingToken<EndpointData>(
@@ -33,7 +33,7 @@ class DataRepository {
     return resultData;
   }
 
-  Future<T> _getDataRefreshingToken<T>({Future<T> Function() onGetData}) async {
+  Future<T> _getDataRefreshingToken<T>({required Future<T> Function() onGetData}) async {
     try {
       if (_accessToken == null) {
         _accessToken = await apiService.getAccessToken();

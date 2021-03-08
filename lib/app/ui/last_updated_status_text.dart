@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class LastUpdatedDateFormatter {
-  final DateTime lastUpdated;
+  final DateTime? lastUpdated;
 
-  LastUpdatedDateFormatter({@required this.lastUpdated});
+  LastUpdatedDateFormatter({required this.lastUpdated});
 
   String lastUpdatedStatusText() {
     if (lastUpdated != null) {
       final formatter = DateFormat.yMd().add_Hms();
-      final format = formatter.format(lastUpdated);
+      final format = formatter.format(lastUpdated!);
       return 'Last updated: $format';
     }
     return '';
@@ -19,7 +19,7 @@ class LastUpdatedDateFormatter {
 class LastUpdatedStatusText extends StatelessWidget {
   final String text;
 
-  LastUpdatedStatusText({Key key, @required this.text});
+  LastUpdatedStatusText({Key? key, required this.text});
 
   @override
   Widget build(BuildContext context) {

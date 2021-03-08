@@ -6,7 +6,7 @@ enum Endpoint { cases, casesConfirmed, casesSuspected, deaths, recovered }
 class API {
   final String apiKey;
 
-  API({@required this.apiKey});
+  API({required this.apiKey});
 
   factory API.sandbox() => API(apiKey: APIKeys.ncovSandboxKey);
 

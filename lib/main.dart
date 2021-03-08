@@ -21,7 +21,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final SharedPreferences sharedPreferences;
 
-  MyApp({@required this.sharedPreferences});
+  MyApp({required this.sharedPreferences});
   @override
   Widget build(BuildContext context) {
     return Provider<DataRepository>(

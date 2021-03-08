@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 
 class EndpointData {
   final int value;
-  final DateTime date;
+  final DateTime? date;
 
-  EndpointData({@required this.value, this.date});
+  EndpointData({required this.value, this.date});
 
   @override
   String toString() => 'date: $date, value: $value';
